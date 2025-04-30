@@ -6,7 +6,7 @@ import json
 import os 
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, origins=["https://deft-mooncake-094a90.netlify.app"])
 
 #users = {}
 USERS_FILE = 'users.json'
