@@ -6,8 +6,12 @@ authors = [
     {name = "Maya Ashley-Martin",email = "mj.ashleymartin@gmail.com"}
 ]
 readme = "README.md"
-requires-python = ">=3.13"
+requires-python = ">=3.10,<4.0"
 dependencies = [
+    "flask (>=3.1.0,<4.0.0)",
+    "flask-sqlalchemy (>=3.1.1,<4.0.0)",
+    "flask-jwt-extended (>=4.7.1,<5.0.0)",
+    "flask-cors (>=5.0.1,<6.0.0)"
 ]
 
 
