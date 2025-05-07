@@ -1,19 +1,16 @@
-[project]
+[tool.poetry]
 name = "cognitive-tutor-backend"
 version = "0.1.0"
 description = "backend of cog tutor i guess"
-authors = [
-    {name = "Maya Ashley-Martin",email = "mj.ashleymartin@gmail.com"}
-]
+authors = ["Maya Ashley-Martin <mj.ashleymartin@gmail.com>"]
 readme = "README.md"
-requires-python = ">=3.10,<4.0"
-dependencies = [
-    "flask (>=3.1.0,<4.0.0)",
-    "flask-sqlalchemy (>=3.1.1,<4.0.0)",
-    "flask-jwt-extended (>=4.7.1,<5.0.0)",
-    "flask-cors (>=5.0.1,<6.0.0)"
-]
 
+[tool.poetry.dependencies] 
+python = ">=3.10,<4.0"
+flask = ">=3.1.0,<4.0.0"
+flask-sqlalchemy = ">=3.1.1,<4.0.0"
+flask-jwt-extended = ">=4.7.1,<5.0.0"
+flask-cors = ">=5.0.1,<6.0.0"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
