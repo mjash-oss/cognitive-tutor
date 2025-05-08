@@ -1,11 +1,8 @@
 from flask import Blueprint, jsonify
-from routes.lessons import logicwordpuzzles
-from flask_jwt_extended import jwt_required
 
 lessons_bp = Blueprint("lessons", __name__)
 
 @lessons_bp.route("/api/lessons", methods=["GET"])
-@jwt_required()
 def get_lessons():
     return jsonify(logicwordpuzzles)
 
