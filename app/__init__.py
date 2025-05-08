@@ -6,7 +6,7 @@ from .routes.lessons import lessons_bp
 
 def create_app():
     app = Flask(__name__)
-    CORS(app, origins=["https://deft-mooncake-094a90.netlify.app"])
+    CORS(app, origins=["https://deft-mooncake-094a90.netlify.app"], suppors_credentials=True, methods=['GET', 'POST'])
 
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite3'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
