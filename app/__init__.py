@@ -2,7 +2,7 @@ from flask import Flask
 from flask_cors import CORS
 from .db import db 
 from .routes.auth import auth_bp
-from .routes.lessons import logicwordpuzzles
+from .routes.lessons import lessons_bp
 from .routes.attempts import attempts_bp
 
 def create_app():
@@ -15,7 +15,7 @@ def create_app():
     db.init_app(app)
 
     app.register_blueprint(auth_bp, url_prefix='/api/auth')
-    app.register_blueprint(logicwordpuzzles, url_prefix='/api/lessons')
+    app.register_blueprint(lessons_bp, url_prefix='/api/lessons')
     app.register_blueprint(attempts_bp, url_prefix='/api/attempts')
 
     return app 
