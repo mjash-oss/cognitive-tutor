@@ -1,21 +1,21 @@
-from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-from flask_jwt_extended import JWTManager
+from flask import Flask 
 from flask_cors import CORS
-from config import Config
-
-db = SQLAlchemy()
-jwt = JWTManager()
+from .db import db 
+from .routes.auth import auth_bp
+from .routes.lessons import logicwordpuzzles
+from .routes.attempts import attempts_bp
 
 def create_app():
     app = Flask(__name__)
-    app.config.from_object(Config)
+    CORS(app, origins=["https://deft-mooncake-094a90.netlify.app"])
+
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite3'
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
     db.init_app(app)
-    jwt.init_app(app)
-    CORS(app)
 
-    from .routes.auth import auth_bp
     app.register_blueprint(auth_bp, url_prefix='/api/auth')
+    app.register_blueprint(logicwordpuzzles, url_prefix='/api/lessons')
+    app.register_blueprint(attempts_bp, url_prefix='/api/attempts')
 
-    return app
+    return app 
