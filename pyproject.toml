@@ -4,6 +4,8 @@ version = "0.1.0"
 description = "backend of cog tutor i guess"
 authors = ["Maya Ashley-Martin <mj.ashleymartin@gmail.com>"]
 readme = "README.md"
+packages = []
+package-mode = false 
 
 [tool.poetry.dependencies] 
 python = ">=3.10,<4.0"
