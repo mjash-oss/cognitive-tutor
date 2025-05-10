@@ -18,6 +18,6 @@ def create_app():
     app.register_blueprint(auth_bp, url_prefix='/api/auth')
     app.register_blueprint(lessons_bp, url_prefix='/api/lessons')
 
-    CORS(app, resources={r"/api/*": {"origins": "https://deft-mooncake-094a90.netlify.app"}}, methods=['GET', 'POST'])
+    CORS(app, origins="https://deft-mooncake-094a90.netlify.app", allow_headers=["Content-Type", "Authorization"], methods=["GET", "POST", "OPTIONS"])
 
     return app 
