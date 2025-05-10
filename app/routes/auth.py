@@ -1,14 +1,15 @@
 from flask import Blueprint, request, jsonify
 from .. import db
 from ..models import User
-from flask_jwt_extended import create_access_token
-from .lessons import logicwordpuzzles 
+from flask_jwt_extended import create_access_token 
 
 auth_bp = Blueprint('auth', __name__)
-lessons_bp = Blueprint('lessons', __name__)
 
 @auth_bp.route('/register', methods=['POST'])
 def register():
+    if not request.is_json:
+        return jsonify({'msg': 'Missing JSON in request'}), 400
+    
     data = request.get_json()
 
     if not data.get('username') or not data.get('password') or not data.get('email'):
@@ -25,14 +26,14 @@ def register():
 
 @auth_bp.route('/login', methods=['POST'])
 def login():
+    if not request.is_json:
+        return jsonify({'msg': 'Missing JSON in request'}), 400
+
     data = request.get_json()
     user = User.query.filter_by(username=data['username']).first()
 
     if user and user.check_password(data['password']):
         access_token = create_access_token(identity=user.id)
         return jsonify(access_token=access_token), 200
+    
     return jsonify({'msg': 'Invalid credentials'}), 401
-
-@lessons_bp.route("/api/lessons", methods=["GET"])
-def get_lessons():
-    return jsonify(logicwordpuzzles)
