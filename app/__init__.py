@@ -14,6 +14,9 @@ def create_app():
     db.init_app(app)
     jwt = JWTManager(app) 
 
+    with app.app_context():
+        db.create_all()
+
     app.register_blueprint(auth_bp, url_prefix='/api/auth')
     app.register_blueprint(lessons_bp, url_prefix='/api/lessons')
 
