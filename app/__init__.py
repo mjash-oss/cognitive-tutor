@@ -7,7 +7,6 @@ from flask_jwt_extended import JWTManager
 
 def create_app():
     app = Flask(__name__)
-    CORS(app, origins=["https://deft-mooncake-094a90.netlify.app"], supports_credentials=True, methods=['GET', 'POST'])
 
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite3'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -18,5 +17,7 @@ def create_app():
 
     app.register_blueprint(auth_bp, url_prefix='/api/auth')
     app.register_blueprint(lessons_bp, url_prefix='/api/lessons')
+
+    CORS(app, resources={r"/api/*": {"origins": "https://deft-mooncake-094a90.netlify.app"}}, methods=['GET', 'POST'])
 
     return app 
