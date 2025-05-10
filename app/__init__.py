@@ -3,14 +3,13 @@ from flask_cors import CORS
 from .db import db 
 from .routes.auth import auth_bp
 from .routes.lessons import lessons_bp
-from flask_jwt_extended import JWTManager 
+from flask_jwt_extended import JWTManager
+from config import Config  
 
 def create_app():
     app = Flask(__name__)
 
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite3'
-    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-    app.config['JWT_SECRET_KEY'] = 'QZ1_Kf3jmqFddXhN82uXfG63bX9JhZUl-nUi3V_ZiHg'
+    app.config.from_object(Config)
 
     db.init_app(app)
     jwt = JWTManager(app) 
