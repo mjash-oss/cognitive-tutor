@@ -2,7 +2,7 @@ from flask import Blueprint, request, jsonify
 from .. import db
 from ..models import User
 from flask_jwt_extended import create_access_token
-from routes.lessons import logicwordpuzzles 
+from .lessons import logicwordpuzzles 
 
 auth_bp = Blueprint('auth', __name__)
 lessons_bp = Blueprint('lessons', __name__)
