@@ -1,10 +1,16 @@
 from flask import Blueprint, jsonify
+import random 
 
 lessons_bp = Blueprint("lessons", __name__)
 
 @lessons_bp.route("/api/lessons", methods=["GET"])
 def get_lessons():
-    return jsonify(logicwordpuzzles)
+    puzzle = random.choice(logicwordpuzzles)
+    return jsonify({
+        "message": "Solve this puzzle!",
+        "puzzle": puzzle["question"],
+        "answers": puzzle["answers"]
+    })
 
 logicwordpuzzles = [
     {
