@@ -3,7 +3,7 @@ import random
 
 lessons_bp = Blueprint("lessons", __name__)
 
-@lessons_bp.route("/api/lessons", methods=["GET"])
+@lessons_bp.route("/", methods=["GET"])
 def get_lessons():
     puzzle = random.choice(logicwordpuzzles)
     return jsonify({
