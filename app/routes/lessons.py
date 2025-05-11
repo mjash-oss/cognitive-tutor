@@ -1,5 +1,6 @@
 from flask import Blueprint, jsonify
 from flask_jwt_extended import jwt_required
+from flask_jwt_extended import get_jwt_identity 
 import random 
 
 lessons_bp = Blueprint("lessons", __name__)
@@ -7,6 +8,7 @@ lessons_bp = Blueprint("lessons", __name__)
 @lessons_bp.route("/", methods=["GET"])
 @jwt_required() 
 def get_lessons():
+    print("User ID from token:", get_jwt_identity())
     puzzle = random.choice(logicwordpuzzles)
     return jsonify({
         "message": "Solve this puzzle!",
