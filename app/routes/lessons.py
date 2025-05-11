@@ -1,9 +1,11 @@
 from flask import Blueprint, jsonify
+from flask_jwt_extended import jwt_required
 import random 
 
 lessons_bp = Blueprint("lessons", __name__)
 
 @lessons_bp.route("/", methods=["GET"])
+@jwt_required() 
 def get_lessons():
     puzzle = random.choice(logicwordpuzzles)
     return jsonify({
