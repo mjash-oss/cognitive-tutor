@@ -8,7 +8,6 @@ from config import Config
 
 def create_app():
     app = Flask(__name__)
-
     app.config.from_object(Config)
 
     db.init_app(app)
@@ -23,8 +22,8 @@ def create_app():
     CORS(app, 
          origins=["https://deft-mooncake-094a90.netlify.app"], 
          supports_credentials=True,
-         #allow_headers=["Content-Type", "Authorization"],
-         #methods=["GET", "POST", "OPTIONS"]
+         allow_headers=["Content-Type", "Authorization"],
+         methods=["GET", "POST", "OPTIONS"]
          )
 
     return app 
