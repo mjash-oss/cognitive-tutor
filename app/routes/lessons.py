@@ -5,17 +5,6 @@ import random
 
 lessons_bp = Blueprint("lessons", __name__)
 
-@lessons_bp.route("/", methods=["GET"])
-@jwt_required() 
-def get_lessons():
-    print("User ID from token:", get_jwt_identity())
-    puzzle = random.choice(logicwordpuzzles)
-    return jsonify({
-        "message": "Solve this puzzle!",
-        "puzzle": puzzle["question"],
-        "answers": puzzle["answers"]
-    })
-
 logicwordpuzzles = [
     {
         "question": "I am taken from a mine and shut up in a wooden case, from which I am never released, and yet I am used by almost everybody. What am I?",
@@ -40,3 +29,14 @@ logicwordpuzzles = [
         "answers": ["175 miles", "175", "175mi", "175 mi"]
     }
 ]
+
+@lessons_bp.route("/", methods=["GET"])
+@jwt_required() 
+def get_lessons():
+    print("User ID from token:", get_jwt_identity())
+    puzzle = random.choice(logicwordpuzzles)
+    return jsonify({
+        "message": "Solve this puzzle!",
+        "puzzle": puzzle["question"],
+        "answers": puzzle["answers"]
+    })
