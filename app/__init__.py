@@ -21,9 +21,9 @@ def create_app():
 
     CORS(app, 
          origins=["https://deft-mooncake-094a90.netlify.app"], 
-         supports_credentials=True,
          allow_headers=["Content-Type", "Authorization"],
-         methods=["GET", "POST", "OPTIONS"]
-         )
+         expose_headers=['Authorization'], 
+         methods=["GET", "POST", "OPTIONS"],
+         supports_credentials=False)
 
     return app 

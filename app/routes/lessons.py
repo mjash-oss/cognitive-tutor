@@ -33,7 +33,10 @@ logicwordpuzzles = [
 @lessons_bp.route("/", methods=["GET"])
 @jwt_required() 
 def get_lessons():
-    print("User ID from token:", get_jwt_identity())
+    print("Token passed validation.")
+    identity = get_jwt_identity()
+    print("User ID from token:", identity)
+    print("User ID from token:", identity)
     puzzle = random.choice(logicwordpuzzles)
     return jsonify({
         "message": "Solve this puzzle!",
